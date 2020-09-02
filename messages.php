@@ -1,0 +1,74 @@
+<?php
+
+$lastdate = lastAdded();
+$count = HowManyAdded($lastdate);
+setlocale(LC_TIME, 'it_IT');
+$currdate = strftime("%e %B %G",strtotime($lastdate));
+
+if($count == 1) {
+    $word = "nuovo link";
+} else {
+    $word = "nuovi link";
+}
+
+$info_response = "<b>ℹ️ INFORMAZIONI ℹ️</b>\n\n" .
+ "<b><i>🔍 RICERCA INLINE</i></b>\n" .
+ "Sapevi che se tagghi il bot in una qualsiasi chat Telegram puoi ricercare e condividere in maniera semplice e veloce i link ai gruppi? " .
+ "Provalo subito!\n\n" .
+ "🤔 <b><i>COSA C'E' SOTTO?</i></b>\n" .
+ "Nascosto nelle profondità dell'internet è presente il codice del bot, scritto interamente in PHP " .
+ "unito alla potenza dei database SQL, luogo dove risiedono tutte le informazioni sui gruppi.\n\n" .
+ "🤔 <b><i>SI MA COSA NASCONDE?</i></b>\n" .
+ "Assolutamente nulla! Il bot è stato scritto da @GrayNeel con il solo intento di essere utile " . 
+ "agli studenti soprattutto a coloro i quali quest'anno non riusciranno ad essere a Torino.\nOvviamente il bot è <b><i>100% gratuito</i></b>.\n\n" .
+ "🤩 <b><i>POSSO AIUTARE IN QUALCHE MODO?</i></b>\n" .
+ "Certo che sì! Se ti viene in mente qualsiasi gruppo che possa andar bene per questo bot " . 
+ "non esitare a segnalarlo scrivendo in chat privata a @GrayNeel. Grazie!\n\n" . 
+ "⏫ <b><i>VERSIONE DEL BOT: v2.0.2 - 02/09/2020</i></b>\n" . 
+ "Sei curioso di sapere quanto il bot è stato utilizzato? Digita /stats!";
+
+$start_response = "👥 <b><i>BOT GRUPPI POLITO</i></b> 👥\n\n" . 
+ "Ciao <b>$firstname</b>! 👋\nBenvenut* nel bot <b>Gruppi PoliTo</b>!\n\n" .
+ "<b><i>🧭 DOVE MI TROVO?</i></b>\n" .
+ "Con questo bot è possibile ottenere i link ai gruppi <i>Whatsapp/Telegram</i> delle facoltà del <i>Politecnico di Torino</i>.\n\n" .
+ "<b>🔧 COME FUNZIONA?\n</b>" .
+ "Naviga tra i menù schiacciando il tasto \"<i><b>Inizia!</b></i>\" in fondo a questo messaggio o rispondi a questo messaggio col nome della tua facoltà.\n" .
+ "Digita /info per ulteriori informazioni sul bot.\n\n" .
+ "<b><i>🤝 POSSO CONTRIBUIRE?</i></b>\n" .
+ "Il tuo aiuto è fondamentale! Comunica i link dei gruppi mancanti inviando un messaggio privato a @GrayNeel. I tuoi colleghi te ne saranno grati!\n\n" .
+ "<b><i>🔄 ULTIMI AGGIORNAMENTI</i></b>\n" . 
+ "Il bot si aggiorna continuamente. Visitalo regolarmente se al momento non trovi ciò che cerchi!\n" .
+ "<b><i>Ultimo aggiornamento:</i>\n$count $word - $currdate</b>";
+
+$stats_response = "<b><i>📊 STATISTICHE</i></b>\n\nLe statistiche di seguito riportate sono da considerare a " . 
+ "partire dal <b>27 agosto 2020</b>, data di inserimento della funzionalità.\n\n" .
+ "<b>📉 <i>STATISTICHE GENERALI</i></b>\n" .
+ "N° utenti totali: <b>" . totalUsers() . "</b>\n" . 
+ "N° richieste inviate: <b>" . totalRequests() . "</b>\n" .
+ "N° di link presenti: <b>" . getTotLinks() .  "</b>\n" .
+ "\n<b>📈 <i>STATISTICHE MENSILI (". strftime("%B %Y", strtotime('this month')) . ")</i></b>\n" .
+ "N° utenti: <b>" . usersThisMonth() . "</b>\n" .
+ "N° richieste inviate: <b>" . RequestsThisMonth() . "</b>\n" .
+ "N° link inseriti: <b>" . linksThisMonth() . "</b>\n" .
+ "\n<b>📈 <i>STATISTICHE GIORNALIERE</i></b>\n" .
+ "N° utenti: <b>" . usersToday() . "</b>\n" .
+ "N° richieste inviate: <b>" . requestsToday() . "</b>\n";
+
+$notadmin_response = "⚠️<b>ATTENZIONE!⚠️\nQuesto comando è disponibile soltanto agli admin del bot.</b>";
+
+$linksucc_response = "✅ <b>Gruppo aggiunto con successo.</b>";
+$groupsucc_response = "✅ <b>Facoltà aggiunta con successo.</b>";
+$failedlink_response = "❌ <b>Errore nell'inserimento dei parametri.</b>";
+
+$linkinfo_response = "Per aggiungere un gruppo invia i dati come segue:\n\n" .
+ "<i>Nome facoltà del link\nNome da visualizzare sul bottone link\nURL\nTipo (A/D/T/M/O)</i>";
+
+$facsucc_response = "✅ <b>Facoltà aggiunta con successo.</b>";
+
+$facultyinfo_response = "Per aggiungere una facoltà invia i dati come segue:\n\n" .
+ "<i>Nome facoltà\nDescrizione (es. <b>Invia i link per la facoltà di Architettura</b>.)\nTipo (A/D/T/M/O)\nCBData (es. <b>kb/start/0/tri/amb</b>)</i>"; 
+
+$list_response = "<b><i>COMANDO DISATTIVATO</i></b>\n\n😔 Mi dispiace, dalla tua ultima visita il bot ha subito profondi " . 
+ "aggiornamenti e questo comando non è più disponibile. Ma non preoccuparti, adesso cercare i gruppi è ancora più facile!\nAggiorna il bot schiacciando il pulsante qui in basso!";
+
+?>
