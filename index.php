@@ -30,7 +30,7 @@ $update = json_decode($content, true);
 include "variables.php";
 include "basefunctions.php";
 include "sql.php";
-include "log.php"; //LOG CHANNEL FOR MESSAGES
+include "log.php";
 include "functions.php"; //ALL FUNCTIONS
 
 $control = 0; //SET TO 0. IF IT IS AN ADMIN MENU COMMAND, IT GOES TO 1 AND SKIP OTHER COMMANDS
