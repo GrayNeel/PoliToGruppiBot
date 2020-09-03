@@ -42,41 +42,80 @@ function sendMess($id, $urltext) {
  * @param $id the userid
  * @param $urltext The message to send
  * 
- * @return $result Result of the encode
+ * @return The result of the encode
  */
 function sendMessMD($id, $urltext) {
 	if (strpos($urltext, "\n")) $urltext = urlencode($urltext);
 	return request("sendMessage?text=$urltext&parse_mode=markdown&chat_id=$id&disable_web_page_preview=true");
 }
 
-//INLINEKEYBOARD PRELEVA IL LAYOUT E LO INVIA ALL'UTENTE CON UNA SENDMESS
+/**
+ * Gets the keyboard layout and send it to the user. A new message is created.
+ * 
+ * @param $layout Keyboard layout to send
+ * @param $id userid
+ * @param $msgtext Message text to send using HTML parse mode
+ * 
+ * @return The result of the encode
+ */
 function inlinekeyboard($layout, $id, $msgtext) {
-	//Se dentro msgtext trovo un a capo, codiifca il testo e lo rende  utile per essere inviato in un url
 	if (strpos($msgtext, "\n")) $msgtext = urlencode($msgtext);
 	$keyboard = json_encode(array("inline_keyboard" => $layout));
 	return request("sendMessage?text=$msgtext&parse_mode=HTML&chat_id=$id&reply_markup=$keyboard&disable_web_page_preview=true");
 }
 
-//INLINEKEYBOARD MARKDOWN
+/**
+ * Gets the keyboard layout and send it to the user. A new message is created.
+ * 
+ * @param $layout Keyboard layout to send
+ * @param $id userid
+ * @param $msgtext Message text to send using Markdown parse mode
+ * 
+ * @return The result of the encode
+ */
 function inlinekeyboardMD($layout, $id, $msgtext) {
-	//Se dentro msgtext trovo un a capo, codiifca il testo e lo rende  utile per essere inviato in un url
 	if (strpos($msgtext, "\n")) $msgtext = urlencode($msgtext);
 	$keyboard = json_encode(array("inline_keyboard" => $layout));
 	return request("sendMessage?text=$msgtext&parse_mode=markdown&chat_id=$id&reply_markup=$keyboard&disable_web_page_preview=true");
 }
 
-//AGGIORNA LA TASTIERA INLINE
+/**
+ * Updates the keyboard without sending a new message, but modifies the existing one
+ * 
+ * @param $layout Keyboard layout to send
+ * @param $id user id
+ * @param $msgid message id to modify
+ * 
+ * @return THe result of the encode
+ */
 function updateKeyboard($layout, $id, $msgid) {
 	$keyboard = json_encode(array("inline_keyboard" => $layout));
 	return request("editMessageReplyMarkup?chat_id=$id&message_id=$msgid&reply_markup=$keyboard");
 }
 
+/**
+ * Edits a sent message (including Keyboard Layout).
+ * 
+ * @param $layout Keyboard layout to send
+ * @param $id user id
+ * @param $msgid Message text to modify
+ * @param $msgtext Message text to send
+ * 
+ * @return The result of the encode
+ */
 function editText($layout, $id, $msgid, $msgtext) {
 	$keyboard = json_encode(array("inline_keyboard" => $layout));
 	return request("editMessageText?chat_id=$id&message_id=$msgid&reply_markup=$keyboard&text=$msgtext&parse_mode=HTML&disable_web_page_preview=true");
 }
 
-//RISPONDI ALLA ILQUERY
+/**
+ * Answers an inline query
+ * 
+ * @param $q_id Query id
+ * @param $ans The answers
+ *
+ * @return The result of the encode
+ */
 function ansquery($q_id, $ans) {
 	$res = json_encode($ans);
 	return request("answerInlineQuery?inline_query_id=$q_id&results=$res");
