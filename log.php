@@ -1,14 +1,32 @@
 <?php
-//VARIABILI PER INVIO DATI AL CANALE DI LOG
-define("DEBUGID", $channelid); //ID DEL CANALE
-define("DEBUG", false);
-//END VARIABILI PER INVIO DATI AL CANALE DI LOG
 
-//FUNZIONE PER INVIO DATI AL CANALE DI LOG. INSERITA QUA PERCHE' UTILIZZATA NELLO SWITCH CREAZIONE VARIABILI
+/**
+ * Log file.
+ * In this file every update message sent to the bot is sent into a given
+ * channel id.
+ * Useful for debug purpose.
+ * 
+ */
+
+/**
+ * @param DEBUGID Channel id
+ * @param DEBUG boolean variable to send full or readable message
+ */
+define("DEBUGID", $channelid); 
+define("DEBUG", false);
+
+/**
+ * Send the update message to a given channel id
+ * 
+ * @param $method Type of update 
+ * @param $res The received update
+ * 
+ * @return void
+ */
 function sendDebugRes($method, $res) {
-	return;
+	return; //IF PRESENT, LOG IS DISABLED
 	if(DEBUG == true)
-		//return sendMess(DEBUGID,"<b>$method</b>:\n\n" . json_encode($res,JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT));
+		return sendMess(DEBUGID,"<b>$method</b>:\n\n" . json_encode($res,JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT));
 
 	switch($method){
 		case 'MESSAGE':
@@ -19,7 +37,7 @@ function sendDebugRes($method, $res) {
 			"<b>Username</b>: @" . $res['message']['from']['username'] . "\n" .
 			"<b>Date:</b> " . date("Y-m-d H:i:s",$res['message']['date']) . "\n" .
 			"<b>Text</b>: " . $res['message']['text'];
-			//sendMess(DEBUGID,$response);
+			sendMess(DEBUGID,$response);
 		break;
 		case 'INLINE QUERY':
 			$response = "<b>" . $method . "</b>\n\n" .
@@ -28,7 +46,7 @@ function sendDebugRes($method, $res) {
 			"<b>Last name</b>: " . $res['inline_query']['from']['last_name'] . "\n" .
 			"<b>Username</b>: @" . $res['inline_query']['from']['username'] . "\n" .
 			"<b>Query</b>: " . $res['inline_query']['query'];
-			//sendMess(DEBUGID,$response);
+			sendMess(DEBUGID,$response);
 		break;
 		case 'CALLBACK QUERY':
 			$response = "<b>" . $method . "</b>\n\n" .
@@ -37,7 +55,7 @@ function sendDebugRes($method, $res) {
 			"<b>Last name</b>: " . $res['callback_query']['from']['last_name'] . "\n" .
 			"<b>Username</b>: @" . $res['callback_query']['from']['username'] . "\n" .
 			"<b>Query</b>: " . $res['callback_query']['data'];
-			//sendMess(DEBUGID,$response);
+			sendMess(DEBUGID,$response);
 		break;
 	}
 }
