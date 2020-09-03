@@ -1,16 +1,34 @@
 <?php
+/**
+	* Telegram Bot written using PHP that helps student get all groups' link for faculties.
+	* The database is on SQL and is not clearly referred here, so if you clone it
+	* will not work.
+	* 
+	*
+	* This code can be reused in accordance with the GNU GPLv3 license.
+	*
+	* @author     Marco Smorti 
+	* @license    https://www.gnu.org/licenses/gpl-3.0.txt
+*/
 
-$content = file_get_contents("php://input"); //GET INPUT FROM BOT
-$update = json_decode($content, true); //TRANSLATE INTO READABLE CONTENT
-
+/**
+ * This file contains all credentials for telegram bot and SQL Database 
+ * and it is not included in the GitHub repository.
+ */
 include "pvt.php";
-
-//TELEGRAM BOT VARIABLES
 define('token', $token);
 define('api', 'https://api.telegram.org/bot' . token . '/');
 
-include "variables.php"; //DEFINE VARIABLES FROM UPDATE
-include "basefunctions.php"; //BASE FUNCTIONS FOR USER INTERACTIONS
+$content = file_get_contents("php://input");
+$update = json_decode($content, true); 
+
+/**
+ * This section of the code gets all the basefunctions and fuctions files.
+ * This index.php is just a wrapper just to make easy to look the code.
+ */
+
+include "variables.php";
+include "basefunctions.php";
 include "sql.php"; //sQL DB
 include "log.php"; //LOG CHANNEL FOR MESSAGES
 include "functions.php"; //ALL FUNCTIONS

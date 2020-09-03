@@ -49,6 +49,9 @@ function searchCommands($text, $userid, $firstname,&$iscommand,&$database,$cbdat
                     inlinekeyboard([[["text" => "↩ Indietro", "callback_data" => "kb/start"]]], $userid, $response);
                 }
             break;
+            //case "/update":
+                //sendMess(376824328,"Ciao!\nDi recente hai cercato \"<b>Produzione industriale</b>\" con il Bot ma non hai trovato nulla.\nSono lieto di informarti che tale facoltà è appena stata aggiunta! Il link al gruppo è il seguente: @prodinduspolito!");
+            //break;
 			default:
               $response = "<b>⚠️ ATTENZIONE!</b>\nComando non riconosciuto.";
               updateLocation("kb", $userid);

@@ -1,6 +1,10 @@
 <?php
 
-//VARIABLES TO IDENTIFY MESSAGE
+/** This section of the code defines all required variables
+ * by getting information from Telegram Bot's update.
+ */
+
+/** These variables are just to identify the type of request that will be used in the index.php switch. */
 define("IS_CBQUERY", 10);
 define("IS_MESSAGE", 11);
 define("IS_ILQUERY", 12);

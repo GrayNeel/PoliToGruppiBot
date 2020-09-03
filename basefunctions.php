@@ -1,5 +1,16 @@
 <?php
 
+/** These are all the base functions that will be used for communicating
+ * with Telegram Bot.
+ * No libraries are used in this project.
+ */
+
+/**
+ * Encodes a created URL to Telegram
+ * 
+ * @param $url the URL to encode
+ * @return $result The result of the encode
+ */
 function request($url) {
 	$url = api . $url;
 	$url = str_replace(array(" ", "\n", "'", "#"), array("%20", "%0A%0D", "%27", "%23"), $url);
@@ -12,13 +23,27 @@ function request($url) {
 	return $result;
 }
 
-//sendMessage in formato HTML
+/** 
+ * Send a message using HTML parse mode.
+ * 
+ * @param $id the userid
+ * @param $urltext The message to send
+ * 
+ * @return $result Result of the encode
+ */
 function sendMess($id, $urltext) {
 	if (strpos($urltext, "\n")) $urltext = urlencode($urltext);
 	return request("sendMessage?text=$urltext&parse_mode=HTML&chat_id=$id&disable_web_page_preview=true");
 }
 
-//sendMessage in formato Markdown
+/** 
+ * Send a message using Markdown parse mode.
+ * 
+ * @param $id the userid
+ * @param $urltext The message to send
+ * 
+ * @return $result Result of the encode
+ */
 function sendMessMD($id, $urltext) {
 	if (strpos($urltext, "\n")) $urltext = urlencode($urltext);
 	return request("sendMessage?text=$urltext&parse_mode=markdown&chat_id=$id&disable_web_page_preview=true");
