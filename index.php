@@ -29,7 +29,7 @@ $update = json_decode($content, true);
 
 include "variables.php";
 include "basefunctions.php";
-include "sql.php"; //sQL DB
+include "sql.php";
 include "log.php"; //LOG CHANNEL FOR MESSAGES
 include "functions.php"; //ALL FUNCTIONS
 
