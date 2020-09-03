@@ -33,7 +33,6 @@ include "sql.php";
 include "log.php";
 include "functions.php"; //ALL FUNCTIONS
 
-$control = 0; //SET TO 0. IF IT IS AN ADMIN MENU COMMAND, IT GOES TO 1 AND SKIP OTHER COMMANDS
 include "admincommands.php"; //CHECKS FOR ADMIN COMMANDS 
 
 //TOR = Type of Request

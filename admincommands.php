@@ -2,6 +2,8 @@
 
 include "messages.php";
 
+$control = 0; //SET TO 0. IF IT IS AN ADMIN MENU COMMAND, IT GOES TO 1 AND SKIP OTHER COMMANDS
+
 if(getUserType($userid) == 'admin') {
 	if($tor == IS_CBQUERY) {
 		updateLocation($cbdata, $userid);
