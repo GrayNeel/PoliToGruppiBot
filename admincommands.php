@@ -2,7 +2,7 @@
 
 include "messages.php";
 
-if(getTypeUser($userid) == 'admin') {
+if(getUserType($userid) == 'admin') {
 	if($tor == IS_CBQUERY) {
 		updateLocation($cbdata, $userid);
 	}

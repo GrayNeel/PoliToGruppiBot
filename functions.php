@@ -32,7 +32,7 @@ function searchCommands($text, $userid, $firstname,&$iscommand,&$database,$cbdat
                 inlinekeyboard([[["text" => "↩ Indietro", "callback_data" => "kb/start"]]], $userid, $stats_response);
             break;
             case "/addlink":
-				if(getTypeUser($userid) != "admin"){
+				if(getUserType($userid) != "admin"){
                     updateLocation("kb/nadd", $userid);
                     inlinekeyboard([[["text" => "↩ Indietro", "callback_data" => "kb/start"]]], $userid, $notadmin_response);
 				}else{
