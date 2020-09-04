@@ -168,7 +168,7 @@ function searchKeyboard($cbdata, $userid) {
             manageKeyboard($userid, $cbdata);
         break;
     }
-
+    
     return;
 }
 

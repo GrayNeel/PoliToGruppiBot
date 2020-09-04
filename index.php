@@ -32,7 +32,6 @@ include "basefunctions.php";
 include "sql.php";
 include "log.php";
 include "functions.php"; //ALL FUNCTIONS
-
 include "admincommands.php"; //CHECKS FOR ADMIN COMMANDS 
 
 //TOR = Type of Request
@@ -40,6 +39,7 @@ switch ($tor) {
 	case IS_CBQUERY:
 		sendDebugRes("CALLBACK QUERY", $update);
 		updateLocation($cbdata, $userid);
+		answerCallbackQuery($cbid);
 		searchKeyboard($cbdata, $userid);
 	break;
 	case IS_MESSAGE:

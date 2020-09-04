@@ -24,7 +24,7 @@ $info_response = "<b>ℹ️ INFORMAZIONI ℹ️</b>\n\n" .
  "🤩 <b><i>POSSO AIUTARE IN QUALCHE MODO?</i></b>\n" .
  "Certo che sì! Se ti viene in mente qualsiasi gruppo che possa andar bene per questo bot " . 
  "non esitare a segnalarlo scrivendo in chat privata a @GrayNeel. Grazie!\n\n" . 
- "⏫ <b><i>VERSIONE DEL BOT: v2.0.2 - 02/09/2020</i></b>\n" . 
+ "⏫ <b><i>VERSIONE DEL BOT: v2.0.3 - 02/09/2020</i></b>\n" . 
  "Sei curioso di sapere quanto il bot è stato utilizzato? Digita /stats!";
 
 $start_response = "👥 <b><i>BOT GRUPPI POLITO</i></b> 👥\n\n" . 
