@@ -24,8 +24,11 @@ $info_response = "<b>ℹ️ INFORMAZIONI ℹ️</b>\n\n" .
  "🤩 <b><i>POSSO AIUTARE IN QUALCHE MODO?</i></b>\n" .
  "Certo che sì! Se ti viene in mente qualsiasi gruppo che possa andar bene per questo bot " . 
  "non esitare a segnalarlo scrivendo in chat privata a @GrayNeel. Grazie!\n\n" . 
- "⏫ <b><i>VERSIONE DEL BOT: v2.0.3 - 02/09/2020</i></b>\n" . 
- "Sei curioso di sapere quanto il bot è stato utilizzato? Digita /stats!";
+ "⏫ <b><i>VERSIONE DEL BOT: v2.0.4 - 05/09/2020</i></b>\n" . 
+ "- Modifica pulsante primo anno (riportato in cima per maggiore visibilità) 📝\n" .
+ "- Aggiunta del comando /nowhatsapp ✅\n" .
+ "- Risoluzione del bug dell'icona di caricamento permanente sui pulsanti ✅\n\n" .
+ "<i>Sei curioso di sapere quanto il bot è stato utilizzato? Digita</i> /stats!";
 
 $start_response = "👥 <b><i>BOT GRUPPI POLITO</i></b> 👥\n\n" . 
  "Ciao <b>$firstname</b>! 👋\nBenvenut* nel bot <b>Gruppi PoliTo</b>!\n\n" .
@@ -34,6 +37,8 @@ $start_response = "👥 <b><i>BOT GRUPPI POLITO</i></b> 👥\n\n" .
  "<b>🔧 COME FUNZIONA?\n</b>" .
  "Naviga tra i menù schiacciando il tasto \"<i><b>Inizia!</b></i>\" in fondo a questo messaggio o rispondi a questo messaggio col nome della tua facoltà.\n" .
  "Digita /info per ulteriori informazioni sul bot.\n\n" .
+ "<b><i>⁉️ PERCHÈ NON WHATSAPP?</i></b>\n" .
+ "Maggiori info: /nowhatsapp\n\n" .
  "<b><i>🤝 POSSO CONTRIBUIRE?</i></b>\n" .
  "Il tuo aiuto è fondamentale! Comunica i link dei gruppi mancanti inviando un messaggio privato a @GrayNeel. I tuoi colleghi te ne saranno grati!\n\n" .
  "<b><i>🔄 ULTIMI AGGIORNAMENTI</i></b>\n" . 
@@ -70,5 +75,15 @@ $facultyinfo_response = "Per aggiungere una facoltà invia i dati come segue:\n\
 
 $list_response = "<b><i>COMANDO DISATTIVATO</i></b>\n\n😔 Mi dispiace, dalla tua ultima visita il bot ha subito profondi " . 
  "aggiornamenti e questo comando non è più disponibile. Ma non preoccuparti, adesso cercare i gruppi è ancora più facile!\nAggiorna il bot schiacciando il pulsante qui in basso!";
+
+$nowhatsapp_response = "<b>💬 PERCHÈ QUESTO ODIO PER WHATSAPP?</b>\n\n" . 
+ "I bot e la maggior parte dei gruppi sono stati creati su Telegram e speriamo che possiate popolarli qui su telegram per svariati motivi:\n\n" .
+ "❌ <i>Limite di 256 persone per gruppo</i>\n" .
+ "❌ <i>Numeri di telefono <b>visibili a tutti</b></i>\n" .
+ "❌ Chat invisibile a chi entra per ultimo (che quindi perde tutto il materiale inviato in precedenza)\n" .
+ "❌ Difficoltà nel gestire il materiale stesso\n" . 
+ "❌ Limite nella dimensione dei documenti\n" .
+ "❌ Milioni di altri motivi che non sto qua a elencare..\n\n" .
+ "Persino i professori hanno capito che Telegram è il modo più corretto di comunicare con gli studenti durante l'emergenza coronavirus, infatti durante lo scorso semestre tutti i gruppi con i docenti erano proprio su questa piattaforma!";
 
 ?>

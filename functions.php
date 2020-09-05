@@ -31,6 +31,10 @@ function searchCommands($text, $userid, $firstname,&$iscommand,&$database,$cbdat
                 updateLocation("kb/stats", $userid);
                 inlinekeyboard([[["text" => "↩ Indietro", "callback_data" => "kb/start"]]], $userid, $stats_response);
             break;
+            case "/nowhatsapp":
+                updateLocation("kb/nowhatsapp", $userid);
+                inlinekeyboard([[["text" => "↩ Indietro", "callback_data" => "kb/start"]]], $userid, $nowhatsapp_response);
+            break;
             case "/addlink":
 				if(getUserType($userid) != "admin"){
                     updateLocation("kb/nadd", $userid);
@@ -133,12 +137,18 @@ function searchKeyboard($cbdata, $userid) {
         break;
         case "kb/start/0":
             updateKeyboard([
+                [["text" => "Primo Anno", "callback_data" => "kb/start/0/pri"]],
                 [["text" => "Triennale", "callback_data" => "kb/start/0/tri"],
                  ["text" => "Magistrale", "callback_data" => "kb/start/0/mag"]],
                 [["text" => "Architettura", "callback_data" => "kb/start/0/arch"],
                  ["text" => "Design", "callback_data" => "kb/start/0/des"]],
                 [["text" => "Altro", "callback_data" => "kb/start/0/oth"]]
             ], $userid,$GLOBALS['msgid']);
+        break;
+        case "kb/start/0/pri":
+            $resarray = getLinksKeyboard(1); //FacultyId Primo anno = 1
+            array_push($resarray,[["text" => "↩ Indietro", "callback_data" => "kb/start/0"]]);
+            updateKeyboard($resarray, $userid,$GLOBALS['msgid']);
         break;
         case "kb/start/0/tri":
             $resarray = getFacultiesKeyboard("T");
