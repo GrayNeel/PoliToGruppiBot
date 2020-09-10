@@ -35,6 +35,10 @@ function searchCommands($text, $userid, $firstname,&$iscommand,&$database,$cbdat
                 updateLocation("kb/nowhatsapp", $userid);
                 inlinekeyboard([[["text" => "↩ Indietro", "callback_data" => "kb/start"]]], $userid, $nowhatsapp_response);
             break;
+            case "/suggest":
+                updateLocation("kb/suggest", $userid);
+                inlinekeyboard([[["text" => "↩ Indietro", "callback_data" => "kb/start"]]], $userid, $suggest_response);
+            break;
             case "/addlink":
 				if(getUserType($userid) != "admin"){
                     updateLocation("kb/nadd", $userid);

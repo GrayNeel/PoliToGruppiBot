@@ -23,15 +23,14 @@ $info_response = "<b>ℹ️ INFORMAZIONI ℹ️</b>\n\n" .
  "agli studenti soprattutto a coloro i quali quest'anno non riusciranno ad essere a Torino.\nOvviamente il bot è <b><i>100% gratuito</i></b>.\n\n" .
  "🤩 <b><i>POSSO AIUTARE IN QUALCHE MODO?</i></b>\n" .
  "Certo che sì! Se ti viene in mente qualsiasi gruppo che possa andar bene per questo bot " . 
- "non esitare a segnalarlo scrivendo in chat privata a @GrayNeel. Grazie!\n\n" . 
- "⏫ <b><i>VERSIONE DEL BOT: v2.0.4 - 05/09/2020</i></b>\n" . 
- "- Modifica pulsante primo anno (riportato in cima per maggiore visibilità) 📝\n" .
- "- Aggiunta del comando /nowhatsapp ✅\n" .
- "- Risoluzione del bug dell'icona di caricamento permanente sui pulsanti ✅\n\n" .
+ "non esitare a segnalarlo inviando il comando /suggest in questa chat. Grazie!\n\n" . 
+ "⏫ <b><i>VERSIONE DEL BOT: v2.1.0 - 10/09/2020</i></b>\n" . 
+ "- Aggiunta la possibilità di inviare richieste tramite il comando /suggest 📝\n\n" .
  "<i>Sei curioso di sapere quanto il bot è stato utilizzato? Digita</i> /stats!";
 
 $start_response = "👥 <b><i>BOT GRUPPI POLITO</i></b> 👥\n\n" . 
  "Ciao <b>$firstname</b>! 👋\nBenvenut* nel bot <b>Gruppi PoliTo</b>!\n\n" .
+ "⚠️<b>I GRUPPI FANNO RIFERIMENTO ALL'A.A. 2020/21.\nSE SEI ALLA FINE DEL II ANNO CERCA I GRUPPI III ANNO!</b>\n\n" . 
  "<b><i>🧭 DOVE MI TROVO?</i></b>\n" .
  "Con questo bot è possibile ottenere i link ai gruppi <i>Whatsapp/Telegram</i> delle facoltà del <i>Politecnico di Torino</i>.\n\n" .
  "<b>🔧 COME FUNZIONA?\n</b>" .
@@ -40,7 +39,7 @@ $start_response = "👥 <b><i>BOT GRUPPI POLITO</i></b> 👥\n\n" .
  "<b><i>⁉️ PERCHÈ NON WHATSAPP?</i></b>\n" .
  "Maggiori info: /nowhatsapp\n\n" .
  "<b><i>🤝 POSSO CONTRIBUIRE?</i></b>\n" .
- "Il tuo aiuto è fondamentale! Comunica i link dei gruppi mancanti inviando un messaggio privato a @GrayNeel. I tuoi colleghi te ne saranno grati!\n\n" .
+ "Il tuo aiuto è fondamentale! Comunica i link dei gruppi mancanti usando il comando /suggest. I tuoi colleghi te ne saranno grati!\n\n" .
  "<b><i>🔄 ULTIMI AGGIORNAMENTI</i></b>\n" . 
  "Il bot si aggiorna continuamente. Visitalo regolarmente se al momento non trovi ciò che cerchi!\n" .
  "<b><i>Ultimo aggiornamento:</i>\n$count $word - $currdate</b>";
@@ -85,5 +84,12 @@ $nowhatsapp_response = "<b>💬 PERCHÈ QUESTO ODIO PER WHATSAPP?</b>\n\n" .
  "❌ Limite nella dimensione dei documenti\n" .
  "❌ Milioni di altri motivi che non sto qua a elencare..\n\n" .
  "Persino i professori hanno capito che Telegram è il modo più corretto di comunicare con gli studenti durante l'emergenza coronavirus, infatti durante lo scorso semestre tutti i gruppi con i docenti erano proprio su questa piattaforma!";
+
+$suggest_response = "Invia adesso un messaggio contenente tutte le informazioni utili per poter aggiungere il gruppo come:\n\n" .
+"- <i>Link del gruppo (Telegram o Whatsapp)</i>\n" . 
+"- <i>Nome della facoltà</i>\n" .
+"- <i>Tipo (Triennale, Magistrale o Architettura/design)</i>\n\n" . 
+"Esempio:\n" . 
+"<i>Ciao! Vorrei aggiungere al bot il gruppo per la triennale in Ingegneria delle Merendine! Il link Whatsapp è https://www.google.it/</i>";
 
 ?>

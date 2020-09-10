@@ -33,6 +33,7 @@ include "sql.php";
 include "log.php";
 include "functions.php"; //ALL FUNCTIONS
 include "admincommands.php"; //CHECKS FOR ADMIN COMMANDS 
+include "suggest.php";
 
 //TOR = Type of Request
 switch ($tor) {
