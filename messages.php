@@ -24,8 +24,9 @@ $info_response = "<b>ℹ️ INFORMAZIONI ℹ️</b>\n\n" .
  "🤩 <b><i>POSSO AIUTARE IN QUALCHE MODO?</i></b>\n" .
  "Certo che sì! Se ti viene in mente qualsiasi gruppo che possa andar bene per questo bot " . 
  "non esitare a segnalarlo inviando il comando /suggest in questa chat. Grazie!\n\n" . 
- "⏫ <b><i>VERSIONE DEL BOT: v2.1.0 - 10/09/2020</i></b>\n" . 
- "- Aggiunta la possibilità di inviare richieste tramite il comando /suggest 📝\n\n" .
+ "⏫ <b><i>VERSIONE DEL BOT: v2.1.1 - 12/09/2020</i></b>\n" . 
+ "- Aggiunta la possibilità di inviare richieste tramite il comando /suggest 📝\n" . 
+ "- Aggiornata icona e descrizione del bot\n\n" .
  "<i>Sei curioso di sapere quanto il bot è stato utilizzato? Digita</i> /stats!";
 
 $start_response = "👥 <b><i>BOT GRUPPI POLITO</i></b> 👥\n\n" . 
@@ -47,7 +48,7 @@ $start_response = "👥 <b><i>BOT GRUPPI POLITO</i></b> 👥\n\n" .
 $stats_response = "<b><i>📊 STATISTICHE</i></b>\n\nLe statistiche di seguito riportate sono da considerare a " . 
  "partire dal <b>27 agosto 2020</b>, data di inserimento della funzionalità.\n\n" .
  "<b>📉 <i>STATISTICHE GENERALI</i></b>\n" .
- "N° utenti totali: <b>" . totalUsers() . "</b>\n" . 
+ "N° utenti unici totali: <b>" . totalUsers() . "</b>\n" . 
  "N° richieste inviate: <b>" . totalRequests() . "</b>\n" .
  "N° di link presenti: <b>" . getTotLinks() .  "</b>\n" .
  "\n<b>📈 <i>STATISTICHE MENSILI (". strftime("%B %Y", strtotime('this month')) . ")</i></b>\n" .

@@ -13,7 +13,7 @@ if (mysqli_connect_errno($dbconn)) {
 	sendMess($userid,"Errore connessione DB.");
 	exit;
 }
-
+mysqli_set_charset($dbconn, "utf8mb4");
 /**
  * Saves into requests table every Bot request.
  * Useful for statistics purpose.
@@ -32,7 +32,7 @@ $stmt = mysqli_prepare($dbconn,"INSERT INTO users (userid, name, username, lang)
 mysqli_stmt_bind_param($stmt, "sssssss", $userid, $nametext, $username,$lang,$now,$nametext,$username);
 mysqli_stmt_execute($stmt);
 
-mysqli_set_charset($dbconn, "utf8mb4");
+
 
 /**
  * Gives the number of users that used at least one time the Bot.
