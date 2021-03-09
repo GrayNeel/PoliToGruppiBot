@@ -1,8 +1,7 @@
 <?php
 /**
-	* Telegram Bot written using PHP that helps student get all groups' link for faculties.
-	* The database is on SQL and is not clearly referred here, so if you clone it
-	* will not work.
+	* Telegram Bot written using PHP that helps students gettin all groups' link for faculties.
+	* The database is on SQL. 
 	* 
 	*
 	* This code can be reused in accordance with the GNU GPLv3 license.
@@ -12,7 +11,7 @@
 */
 
 /**
- * This file contains all credentials for telegram bot and SQL Database 
+ * pvt.php file contains all credentials for telegram bot and SQL Database 
  * and it is not included in the GitHub repository.
  */
 include "pvt.php";
@@ -36,26 +35,29 @@ include "admincommands.php"; //CHECKS FOR ADMIN COMMANDS
 include "suggest.php";
 
 //TOR = Type of Request
-switch ($tor) {
-	case IS_CBQUERY:
-		sendDebugRes("CALLBACK QUERY", $update);
-		updateLocation($cbdata, $userid);
-		answerCallbackQuery($cbid);
-		searchKeyboard($cbdata, $userid);
-	break;
-	case IS_MESSAGE:
-		if($control == 0) {
-			sendDebugRes("MESSAGE", $update);
-			$iscommand=0;
-			searchCommands($text,$userid,$firstname,$iscommand,$database,$cbdata);
-			SearchLinks($userid,$iscommand, $text);
-		}
-	break;
-	case IS_ILQUERY:
-		sendDebugRes("INLINE QUERY", $update);
-		ILQuery($ilquery,$ilqid);
-	break;
-}
+
+	switch ($tor) {
+		case IS_CBQUERY:
+			if($old==0) {
+				sendDebugRes("CALLBACK QUERY", $update);
+				updateLocation($cbdata, $userid);
+				answerCallbackQuery($cbid);
+				searchKeyboard($cbdata, $userid);
+			}
+		break;
+		case IS_MESSAGE:
+			if($control == 0 && $messtype=="private" && $old==0) {
+				sendDebugRes("MESSAGE", $update);
+				$iscommand=0;
+				searchCommands($text,$userid,$firstname,$iscommand,$database,$cbdata);
+				SearchLinks($userid,$iscommand, $text);
+			}
+		break;
+		case IS_ILQUERY:
+			sendDebugRes("INLINE QUERY", $update);
+			ILQuery($ilquery,$ilqid);
+		break;
+	}
 
 exit(0);
 ?>

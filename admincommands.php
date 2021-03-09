@@ -2,7 +2,7 @@
 
 include "messages.php";
 
-$control = 0; //SET TO 0. IF IT IS AN ADMIN MENU COMMAND, IT GOES TO 1 AND SKIP OTHER COMMANDS
+$control = 0; //SET TO 0. IF IT IS AN ADMIN MENU COMMAND, IT GOES TO 1 AND SKIPS OTHER COMMANDS
 
 if(getUserType($userid) == 'admin') {
 	if($tor == IS_CBQUERY) {
@@ -50,10 +50,11 @@ if(getUserType($userid) == 'admin') {
 				editText($resarray, $userid, $msgid, $GLOBALS['facultyinfo_response']); 
 			} else {
 				$row = explode(PHP_EOL,$text);
-				$title = $row[0];
-				$description = $row[1];
-				$type = $row[2];
-				$cbdata = $row[3];
+				$fulltitle = $row[0];
+				$title = $row[1];
+				$description = $row[2];
+				$type = $row[3];
+				$cbdata = $row[4];
 	
 				if(count($row)<=1){
 					updateLocation("kb/add/ko", $userid);
@@ -61,12 +62,12 @@ if(getUserType($userid) == 'admin') {
 					return;
 				}
 				
-				$stmt = mysqli_prepare($dbconn,"INSERT INTO faculties (title, description, Type, cbdata) VALUES (?, ?, ?, ?)");
-				mysqli_stmt_bind_param($stmt, "ssss", $title,$description,$type,$cbdata);
+				$stmt = mysqli_prepare($dbconn,"INSERT INTO faculties (full_title, title, description, Type, cbdata) VALUES (?, ?, ?, ?, ?)");
+				mysqli_stmt_bind_param($stmt, "sssss",$fulltitle,$title,$description,$type,$cbdata);
 				mysqli_stmt_execute($stmt);
 
 				updateLocation("kb/add/ok", $userid);
- 			    inlinekeyboard([[["text" => "↩ Indietro", "callback_data" => "kb/start"]]], $userid, $GLOBALS['facsucc_response']);
+ 			    inlinekeyboard([[["text" => "↩ Indietro", "callback_data" => "kb/start/0"]]], $userid, $GLOBALS['facsucc_response']);
 				return;
 			}
 		break;

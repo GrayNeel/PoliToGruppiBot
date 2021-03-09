@@ -2,6 +2,14 @@
 /**
  * This is the link file between PHP and SQL Database.
  */
+function getDateFromUserId($userid) {
+	$stmt = mysqli_prepare($GLOBALS['dbconn'],"SELECT date FROM users WHERE userid=?");
+	mysqli_stmt_bind_param($stmt, "s", $userid);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_bind_result($stmt,$lastdate);
+	mysqli_stmt_fetch($stmt);
+	return $lastdate;
+}
 
 /**
  * Opens a new connection to database.
@@ -18,20 +26,33 @@ mysqli_set_charset($dbconn, "utf8mb4");
  * Saves into requests table every Bot request.
  * Useful for statistics purpose.
  */
+$old=0;
+
 $stmt = mysqli_prepare($dbconn,"INSERT INTO requests (userid, name, lang, request_data) VALUES (?, ?, ?, ?)");
 mysqli_stmt_bind_param($stmt, "ssss", $userid, $nametext, $lang, $content);
 mysqli_stmt_execute($stmt);
 
+/**FORZA AGGIORNAMENTO DEL BOT
+ * OGNI GIORNO
+ */
+$lastdate = getDateFromUserId($userid);
 $now = date("Y-m-d H:i:s");
 
+if(isset($lastdate) && (strncmp($lastdate,"2020-09-19",10)<0)) {
+	$old=1;
+	$update_response = "Dalla tua ultima visita il bot potrebbe essersi aggiornato, perciò ti invito ad aggiornarlo schiacciando il pulsante 👇";
+	$stmt = mysqli_prepare($dbconn,"INSERT INTO users (userid, name, username, lang) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE date=?, name=?, username=?");
+	mysqli_stmt_bind_param($stmt, "sssssss", $userid, $nametext, $username,$lang,$now,$nametext,$username);
+	mysqli_stmt_execute($stmt);
+	inlinekeyboard([[["text" => "♻️ AGGIORNA BOT", "callback_data" => "kb/start"]]], $userid, $update_response);
+}
 /**
- * Saves into users table every user that uses the Bot.
- * Useful for statistics purpose.
- */
+* Saves into users table every user that uses the Bot.
+* Useful for statistics purpose.
+*/
 $stmt = mysqli_prepare($dbconn,"INSERT INTO users (userid, name, username, lang) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE date=?, name=?, username=?");
 mysqli_stmt_bind_param($stmt, "sssssss", $userid, $nametext, $username,$lang,$now,$nametext,$username);
 mysqli_stmt_execute($stmt);
-
 
 
 /**
@@ -127,6 +148,23 @@ function usersThisMonth() {
 }
 
 /**
+ * Gives the number of users that used the Bot last month.
+ * 
+ * @return The total number of users last month
+ */
+function usersLastMonth() {
+	$date = strftime("%m %Y", strtotime('last month'));
+	$datevec = explode(' ',$date);
+	$month = $datevec[0];
+	$year = $datevec[1];
+	$stmt = mysqli_prepare($GLOBALS["dbconn"],"SELECT COUNT(*) FROM users WHERE date>='$year-$month-01 00:00:00' AND date<='$year-$month-31 23:59:59'");
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_bind_result($stmt, $total);
+	mysqli_stmt_fetch($stmt);
+	return $total;
+}
+
+/**
  * Gives the number of requests that have been pushed to the Bot this month.
  * 
  * @return The total number of requests this month
@@ -144,12 +182,46 @@ function RequestsThisMonth() {
 }
 
 /**
+ * Gives the number of requests that have been pushed to the Bot last month.
+ * 
+ * @return The total number of requests last month
+ */
+function RequestsLastMonth() {
+	$date = strftime("%m %Y", strtotime('last month'));
+	$datevec = explode(' ',$date);
+	$month = $datevec[0];
+	$year = $datevec[1];
+	$stmt = mysqli_prepare($GLOBALS["dbconn"],"SELECT COUNT(*) FROM requests WHERE date>='$year-$month-01 00:00:00' AND date<='$year-$month-31 23:59:59'");
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_bind_result($stmt, $total);
+	mysqli_stmt_fetch($stmt);
+	return $total;
+}
+
+/**
  * Gives the number of links added to the bot this month.
  * 
- * @return The total number of links today
+ * @return The total number of links this month
  */
 function linksThisMonth() {
 	$date = strftime("%m %Y", strtotime('this month'));
+	$datevec = explode(' ',$date);
+	$month = $datevec[0];
+	$year = $datevec[1];
+	$stmt = mysqli_prepare($GLOBALS["dbconn"],"SELECT COUNT(*) FROM links WHERE date>='$year-$month-01' AND date<='$year-$month-31'");
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_bind_result($stmt, $total);
+	mysqli_stmt_fetch($stmt);
+	return $total;
+}
+
+/**
+ * Gives the number of links added to the bot last month.
+ * 
+ * @return The total number of links last month
+ */
+function linksLastMonth() {
+	$date = strftime("%m %Y", strtotime('last month'));
 	$datevec = explode(' ',$date);
 	$month = $datevec[0];
 	$year = $datevec[1];
@@ -195,7 +267,7 @@ function updateLocation($cbdata, $userid) {
  * @return $rows Requested faculties
  */
 function getFaculties($type) {
-	$result = mysqli_query($GLOBALS["dbconn"], "SELECT title,cbdata FROM faculties WHERE Type='$type' ORDER BY title");
+	$result = mysqli_query($GLOBALS["dbconn"], "SELECT title,cbdata,full_title FROM faculties WHERE Type='$type' ORDER BY title");
 	$rows = [];
 	while($row = mysqli_fetch_array($result))
 	{
@@ -230,6 +302,22 @@ function getLinksByFacultyId($facultyid) {
  */
 function getTypeByFacultyId($facultyid) {
 	$stmt = mysqli_prepare($GLOBALS["dbconn"],"SELECT Type FROM faculties WHERE facultyid='$facultyid'");
+	//mysqli_stmt_bind_param($stmt, "s", $userid);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_bind_result($stmt, $res);
+	mysqli_stmt_fetch($stmt);
+
+	return $res;
+}
+
+/** 
+ * Gets the Name of a given faculty
+ * 
+ * @param $facultyid Faculty id
+ * @return $res Type of requested faculty
+ */
+function getNameByFacultyId($facultyid) {
+	$stmt = mysqli_prepare($GLOBALS["dbconn"],"SELECT full_title FROM faculties WHERE facultyid=$facultyid");
 	//mysqli_stmt_bind_param($stmt, "s", $userid);
 	mysqli_stmt_execute($stmt);
 	mysqli_stmt_bind_result($stmt, $res);
@@ -351,6 +439,30 @@ function HowManyAdded($date) {
 	mysqli_stmt_bind_result($stmt, $res);
 	mysqli_stmt_fetch($stmt);
 	
+	return $res;
+}
+
+function getUserId() {
+	$result = mysqli_query($GLOBALS["dbconn"], "SELECT DISTINCT userid FROM tmp_msg WHERE sent=0 LIMIT 25");
+	$rows = [];
+	while($row = mysqli_fetch_array($result))
+	{
+    	$rows[] = $row;
+	}
+	
+	return $rows;
+}
+
+function setAsSent($userid) {
+	return mysqli_query($GLOBALS["dbconn"], "UPDATE tmp_msg SET sent=1 WHERE userid='$userid'");
+}
+
+function countLeft() {
+	$stmt = mysqli_prepare($GLOBALS["dbconn"], "SELECT COUNT(*) FROM tmp_msg WHERE sent=0");
+	
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_bind_result($stmt, $res);
+	mysqli_stmt_fetch($stmt);
 	return $res;
 }
 

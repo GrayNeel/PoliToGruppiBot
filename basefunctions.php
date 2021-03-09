@@ -121,6 +121,13 @@ function ansquery($q_id, $ans) {
 	return request("answerInlineQuery?inline_query_id=$q_id&results=$res");
 }
 
+/**
+ * Answers callback query
+ * 
+ * @param $cbid CallbackQuery id
+ *
+ * @return The result of the request
+ */
 function answerCallbackQuery($cbid) {
 	return request("answerCallbackQuery?callback_query_id=$cbid");
 }

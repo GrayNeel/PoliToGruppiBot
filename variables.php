@@ -12,13 +12,11 @@ define("IS_ILQUERY", 12);
 if (!$update) exit;
 
 $text = isset($update['message']['text']) ? trim($update['message']['text']) : "";
-$cbdata = $update['callback_query']['data']; 
-$msgid = $update['callback_query']['message']['message_id'];
-$cbid = $update['callback_query']['id'];
-$ilqid = $update["inline_query"]["id"];
-$ilquery = $update["inline_query"]["query"];
 
 if (isset($update['callback_query'])) {
+	$cbdata = $update['callback_query']['data']; 
+	$msgid = $update['callback_query']['message']['message_id'];
+	$cbid = $update['callback_query']['id'];
 	$userid = $update['callback_query']['from']['id'];
 	$firstname = $update['callback_query']['from']['first_name'];
 	$lastname = isset($update['callback_query']['from']['last_name']) ? $update['callback_query']['from']['last_name'] : "";
@@ -27,6 +25,8 @@ if (isset($update['callback_query'])) {
 	$tor = IS_CBQUERY;
 }
 else if (isset($update['inline_query'])) {
+	$ilqid = $update["inline_query"]["id"];
+	$ilquery = $update["inline_query"]["query"];
 	$userid = $update['inline_query']['from']['id'];
 	$firstname = $update['inline_query']['from']['first_name'];
 	$lastname = isset($update['inline_query']['from']['last_name']) ? $update['inline_query']['from']['last_name'] : "";
@@ -40,6 +40,7 @@ else if (isset($update['message'])) {
 	$lastname = isset($update['message']['from']['last_name']) ? $update['message']['from']['last_name'] : "";
 	$username = isset($update['message']['from']['username']) ? $update['message']['from']['username'] : "";
 	$lang = isset($update['message']['from']['language_code']) ? $update['message']['from']['language_code'] : "";
+	$messtype = $update['message']['chat']['type'];
 	$tor = IS_MESSAGE;
 }
 $nametext = $firstname . " " . $lastname;
