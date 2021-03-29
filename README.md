@@ -1,7 +1,7 @@
 # PoliToGruppiBot
 This is a Telegram Bot that collects link and organize them using inline keyboard from Telegram APIs and a MySQL database. This project has NO dependencies, since all the Telegram APIs are implemented in __basefunctions.php__ file.
 
-##Get started
+## Get started
 To get started with this bot a token is neeeded. Get it from BotFather by creating a new bot and then initialize a new "_pvt.php_" file filling the following variables:
 
 ```php
@@ -43,7 +43,7 @@ $result = \curl_exec($handle);
 ```
 **IMPORTANT**: Remember to activate HTTPS on your website, otherwise bot will not work.
 
-##index.php
+## index.php
 
 This is the starting point of all your bot's requests. This page gets all the input coming from the bot using
 ```php
@@ -54,11 +54,11 @@ And then parsing them into a readable JSON format. Then all the other file are i
 * **IS_MESSAGE** here all the messages from user will be managed.
 * **IS_ILQUERY** manages the inline query (tagging the bot from any chat). 
 
-##variables.php
+## variables.php
 
 This files gets all the necessary variables from the JSON created before. You can access it as a vector. In this files it is also recognized if it is a CB_QUERY, IL_QUERY or a MESSAGE.
 
-##basefunctions.php
+## basefunctions.php
 
 This file is the **core** that contains Telegram APIs and allows you to communicate with target user.  
 For example, you may want to send a message to user by using the following function:
@@ -71,27 +71,27 @@ It receives:
 
 All the other functions work like this and you just need to get a look to Telegram APIs to create new one.
 
-##sql.php
+## sql.php
 
 This file contains all the queries to database. It is the direct interact point with your DB and in my case i used **mysqli** directly from PHP. If everything is set (see _pvt.php_) a successful connection will be open.
 
-##log.php
+## log.php
 
 This is the part that helps you debug your code. set **DEBUG** variable to _true_ if you want to receive all the JSONs queries in your channel, _false_ if you don't want to.
 
-##functions.php
+## functions.php
 
 This is where the job has been done. All these functions create the keyboard, search the links, organize them. 
 
-##messages.php
+## messages.php
 
 All the messages that Bot sends back are here. If you want you can edit them and maybe translate into another language. 
 **NOTE**: there is no multilanguage support. To enable that, you may need to switch those messages to the DB.
 
-##suggest.php
+## suggest.php
 
 File that implements the "request a  link" function. It sends all the request to the channelid referred in _pvt.php_.
 
-##admincommands.php
+## admincommands.php
 
 This file helps admin of bot to add new link from the chat instead of manipulating directly the bot.
