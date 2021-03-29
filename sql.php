@@ -443,7 +443,7 @@ function HowManyAdded($date) {
 }
 
 function getUserId() {
-	$result = mysqli_query($GLOBALS["dbconn"], "SELECT DISTINCT userid FROM tmp_msg WHERE sent=0 LIMIT 25");
+	$result = mysqli_query($GLOBALS["dbconn"], "SELECT DISTINCT userid FROM tmp_msg WHERE sent=0 LIMIT 20");
 	$rows = [];
 	while($row = mysqli_fetch_array($result))
 	{

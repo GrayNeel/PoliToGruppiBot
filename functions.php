@@ -196,7 +196,7 @@ function searchKeyboard($cbdata, $userid) {
                 [["text" => "GRUPPI GENERICI", "callback_data" => "kb/start/0/oth"]],
                 [["text" => "24 CFU - CIFIS PIEMONTE", "url" => "https://t.me/piemonte24cfu"]],
                 [["text" => "🤝 DONA PER SOSTENERE IL BOT", "url" => "https://paypal.me/pools/c/8xn0U8qhHx"]],
-                [["text" => "ℹ️ Info", "callback_data" => "kb/start/0/info"],["text" => "💡 Suggerisci link", "callback_data" => "kb/start/0/suggest"]],
+                [["text" => "ℹ️ Info", "callback_data" => "kb/start/0/info"],["text" => "💡 Segnala link", "callback_data" => "kb/start/0/suggest"]],
                 [["text" => "❓ NoWhatsapp", "callback_data" => "kb/start/0/nowhatsapp"],["text" => "📊 Statistiche", "callback_data" => "kb/start/0/stats"]],
                 [["text" => "🛠 Estensione Chrome PoliTools", "url" => "https://chrome.google.com/webstore/detail/politools/fbbjhoaakfhbggkegckmjafkffaofnkd?hl=it"]],
                 [["text" => "↩ Torna al messaggio di benvenuto", "callback_data" => "kb/start"]]

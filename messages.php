@@ -89,7 +89,8 @@ $suggest_response = "Invia adesso un messaggio contenente tutte le informazioni 
 "- <i>Nome della facoltà</i>\n" .
 "- <i>Tipo (Triennale, Magistrale o Architettura/design)</i>\n\n" . 
 "Esempio:\n" . 
-"<i>Ciao! Vorrei aggiungere al bot il gruppo per la triennale in Ingegneria delle Merendine! Il link Whatsapp è https://www.google.it/</i>";
+"<i>Ciao! Vorrei aggiungere al bot il gruppo per la triennale in Ingegneria delle Merendine! Il link Whatsapp è https://www.google.it/</i>\n\n".
+"🆕 Puoi anche semplicemente <b>segnalare un link non funzionante</b> indicando la facoltà e il nome del gruppo che non funziona più.";
 
 $mainmenu_response = "👥 <b><i>BOT GRUPPI POLITO</i></b> 👥\n\n" .
  "<b>Seleziona l'area principale della facoltà che cerchi oppure seleziona i gruppi generici del Politecnico.</b>\n\n" . 
